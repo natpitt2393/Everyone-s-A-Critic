@@ -40,3 +40,46 @@ body {
     text-align: center;
 }
 
+#footer{
+    background-color: hsl(348, 100%, 61%);
+}
+
+.footer-content {
+    text-align: center;
+    /* margin-top: 20px; */
+}
+
+/* Below here is for the results HTML */
+
+.movie-placeholder {
+    display: flex;
+    justify-content: center;
+    font-size: 90px;
+    margin: 60px 0px;
+}
+
+.content {
+    color: red;
+    display: flex;
+    flex-direction: inline;
+    padding: 10px 50px 20px;
+}
+
+#xyz {
+    padding: 10px 50px 20px;
+    border: 5px outset;
+    margin: 10px;
+}
+
+#result-header {
+    height: 100px;
+}
+
+#result-title {
+    margin-top: 20px;
+}
+
+#home-button {
+    display: flex;
+    justify-content: center;
+}
