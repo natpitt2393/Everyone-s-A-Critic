@@ -4,13 +4,17 @@ $("#SearchForm").submit(OnSubmit)
 function OnSubmit(event){
     event.preventDefault();
     let movieName = $("#search-bar").val();
+    let year = $("#year-field").val();
     movieName.replace(' ', '+');
-    FetchData(movieName);
+    FetchData(movieName, year);
 }
 
-function FetchData(p_name){
+function FetchData(p_name, p_year){
     let requestURL = "http://www.omdbapi.com/?apikey=4c323fb9&";
     requestURL += "t="+p_name;
+    if (p_year !== "") {
+        requestURL += "y=" + p_year;
+    } 
     fetch(requestURL)
         .then(function(response){
             //Check response status
