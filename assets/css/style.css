@@ -1,3 +1,39 @@
-h1 {
+header {
     text-align: center;
 }
+
+.popcorn {
+    background-image: url(https://s3.amazonaws.com/images.ecwid.com/images/27221405/1376656712.jpg);
+    background-color: #CCCCCC; 
+    height: 500px; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+}
+
+.searchbox {
+    display: flex;
+    justify-content: center;
+    margin-top: 300px;
+    text-align: center;
+}
+
+.search-text {
+    font-size: 30px;
+    font-weight: bolder;
+    color: black;
+}
+
+.button {
+    margin-top: 10px;
+}
+
+.container {
+    margin-top: 50px;
+}
+.movie-name {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
