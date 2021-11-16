@@ -1,5 +1,5 @@
 // Capture search info
-// let resultPageURl = "";
+ let resultPageURl = "./results.html";
 $("#SearchForm").submit(OnSubmit)
 function OnSubmit(event){
     event.preventDefault();
@@ -24,7 +24,7 @@ function FetchData(p_name){
             console.log(data);
             // Save to storage
             localStorage.setItem("SearchData", JSON.stringify(data))
-            // window.location.assign(resultPageURl);
+             window.location.assign(resultPageURl);
         })
         .catch(function(error){
             //Do Something in case of error
