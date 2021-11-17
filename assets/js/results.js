@@ -7,6 +7,7 @@
 $("#CriticsPick").on("click", false);
 let OMDBSearchData = JSON.parse(localStorage.getItem("SearchData"));
 $("#Movie-Title").text(OMDBSearchData.Title);
+$("#OMDB-plot").text("Plot: " + OMDBSearchData.Plot);
 $("#OMDB-List").children().eq(0).text("Actors: " + OMDBSearchData.Actors);
 $("#OMDB-List").children().eq(1).text("Box Office: " + OMDBSearchData.BoxOffice);
 $("#OMDB-List").children().eq(2).text("Director: " + OMDBSearchData.Director);
