@@ -2,8 +2,9 @@
 // What we are getting from OMDB and what we are getting from NYTIMES 
 // OMDB search: Actors, Box Office, Director, Genre, Language, Year (*Maybe IMDB Title) 
 // NYTIMES search: Byline, Critics Pick, MPAA-rating, Headline, Summary Short, Publication Date
+//TODO:  Test Search for date validation
 //iframe URL
-
+$("#CriticsPick").on("click", false);
 let OMDBSearchData = JSON.parse(localStorage.getItem("SearchData"));
 $("#Movie-Title").text(OMDBSearchData.Title);
 $("#OMDB-List").children().eq(0).text("Actors: " + OMDBSearchData.Actors);
@@ -13,9 +14,8 @@ $("#OMDB-List").children().eq(3).text("Genre: " + OMDBSearchData.Genre);
 $("#OMDB-List").children().eq(4).text("Language: " + OMDBSearchData.Language);
 $("#OMDB-List").children().eq(5).text("Year: " + OMDBSearchData.Released);
 
-let NYTimesSearchData;
-let requestURL = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?api-key=UhbjB3IK8YrmeGTWJGAeO8LCdASCHWdA&";
-requestURL += "query=" + OMDBSearchData.Title;
+let requestURL = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?api-key=UhbjB3IK8YrmeGTWJGAeO8LCdASCHWdA";
+requestURL += "&query=" + OMDBSearchData.Title;
 fetch(requestURL)
     .then(function (response) {
         //Check response status
@@ -28,12 +28,94 @@ fetch(requestURL)
         // Validate data 
         console.log(data);
         // Save to storage
-        NYTimesSearchData = data;
+        DisplayNYTimesData(data);
     })
     .catch(function (error) {
         //Do Something in case of error
         console.log("Error: " + error);
     });
+
+function DisplayNYTimesData(p_NYTimesSearchData){
+    let _reviewData = PickReview(p_NYTimesSearchData);
+    $("#Headline").text(_reviewData.headline);
+    $("#Byline").text(_reviewData.byline);
+    $("#CriticsPick").val(_reviewData.critics_pick === 1 ? true:false);
+    $("#Summary").text(_reviewData.summary_short);
+    $("#Published").text(_reviewData.publication_date)
+}
+
+function PickReview(p_NYTimesSearchData){
+    if (p_NYTimesSearchData.results.length === 0) {OnReviewsNone(); return; }
+    for(let i = 0; i < p_NYTimesSearchData.results.length; i++){
+        if(CompareDates(OMDBSearchData.Released, p_NYTimesSearchData.results[i].opening_date)){
+            return p_NYTimesSearchData.results[i];
+        }
+    }
+    // If no release date matches are found
+    OnReviewsNone();
+}
+
+//OMDB Date format: Day Month(short) Year Ex: 21 Nov 2003
+//NYTimes Date format Year-Month(num)-Day Ex: 2003-11-21
+function CompareDates(p_OMDBDate, p_NYTimesDate){
+    // Previous function exits if no review so this should not happen but idk just in case I made this check
+    if (p_OMDBDate === "N/A") { 
+        console.log("Warning: OMDB release date was equal to N/A. Investigate as this case should most likely never happen."); 
+        return; 
+    }
+    p_OMDBDate = FormatOMDBDate(p_OMDBDate);
+    return p_OMDBDate === p_NYTimesDate;
+}
+
+//Returns OMDB date formatted like NYTimesDate
+function FormatOMDBDate(p_OMDBDate){
+    // Values: 0 - day, 1 - month, 2 - year
+    let p_OMDBDateValues = p_OMDBDate.split(" ");
+    switch(p_OMDBDateValues[1])
+    {
+        case "Jan":
+            p_OMDBDateValues[1] = "01";
+            break;
+        case "Feb":
+            p_OMDBDateValues[1] = "02";
+            break;
+        case "Mar":
+            p_OMDBDateValues[1] = "03";
+            break;
+        case "Apr":
+            p_OMDBDateValues[1] = "04";
+            break;
+        case "May":
+            p_OMDBDateValues[1] = "05";
+            break;
+        case "Jun":
+            p_OMDBDateValues[1] = "06";
+            break;
+        case "Jul":
+            p_OMDBDateValues[1] = "07";
+            break;
+        case "Aug":
+            p_OMDBDateValues[1] = "08";
+            break;
+        case "Sep":
+            p_OMDBDateValues[1] = "09";
+            break;
+        case "Oct":
+            p_OMDBDateValues[1] = "10";
+            break;
+        case "Nov":
+            p_OMDBDateValues[1] = "11";
+            break;
+        case "Dec":
+            p_OMDBDateValues[1] = "12";
+            break;
+    }
+    return p_OMDBDateValues[2] + "-" + p_OMDBDateValues[1] + "-" + p_OMDBDateValues[0];
+}
+
+function OnReviewsNone(){
+
+}
 
 
 
