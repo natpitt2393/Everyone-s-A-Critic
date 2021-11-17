@@ -27,9 +27,10 @@ function FetchData(p_name, p_year){
         })
         .then(function(data){
             // Validate data
-            if (data.Released === "N/A")
+            if (data.Response === "False")
             {
                 //Give error
+                //alert("Movie not found! Try searching again!");
                 return;
             }
             console.log(data);

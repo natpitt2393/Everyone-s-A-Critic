@@ -15,6 +15,7 @@ $("#OMDB-List").children().eq(3).text("Genre: " + OMDBSearchData.Genre);
 $("#OMDB-List").children().eq(4).text("Language: " + OMDBSearchData.Language);
 $("#OMDB-List").children().eq(5).text("Year: " + OMDBSearchData.Released);
 
+
 let requestURL = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?api-key=UhbjB3IK8YrmeGTWJGAeO8LCdASCHWdA";
 requestURL += "&query=" + OMDBSearchData.Title;
 fetch(requestURL)
@@ -43,6 +44,8 @@ function DisplayNYTimesData(p_NYTimesSearchData){
     $("#CriticsPick").val(_reviewData.critics_pick === 1 ? true:false);
     $("#Summary").text(_reviewData.summary_short);
     $("#Published").text(_reviewData.publication_date)
+    $("#urlToArticle").text(_reviewData.link.url);
+    $("#urlToArticle").attr("href", _reviewData.link.url);
 }
 
 function PickReview(p_NYTimesSearchData){
@@ -115,8 +118,10 @@ function FormatOMDBDate(p_OMDBDate){
 }
 
 function OnReviewsNone(){
-
+    $("#NYT-search-result").text("No results found!");
 }
+
+
 
 
 
