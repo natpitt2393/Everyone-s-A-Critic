@@ -5,6 +5,14 @@
 //iframe URL
 
 let OMDBSearchData = JSON.parse(localStorage.getItem("SearchData"));
+$("#Movie-Title").text(OMDBSearchData.Title);
+$("#OMDB-List").children().eq(0).text("Actors: " + OMDBSearchData.Actors);
+$("#OMDB-List").children().eq(1).text("Box Office: " + OMDBSearchData.BoxOffice);
+$("#OMDB-List").children().eq(2).text("Director: " + OMDBSearchData.Director);
+$("#OMDB-List").children().eq(3).text("Genre: " + OMDBSearchData.Genre);
+$("#OMDB-List").children().eq(4).text("Language: " + OMDBSearchData.Language);
+$("#OMDB-List").children().eq(5).text("Year: " + OMDBSearchData.Released);
+
 let NYTimesSearchData;
 let requestURL = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?api-key=UhbjB3IK8YrmeGTWJGAeO8LCdASCHWdA&";
 requestURL += "query=" + OMDBSearchData.Title;
@@ -26,6 +34,7 @@ fetch(requestURL)
         //Do Something in case of error
         console.log("Error: " + error);
     });
+
 
 
     // when a user types in a movies
