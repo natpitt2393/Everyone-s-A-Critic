@@ -7,12 +7,14 @@
 $("#CriticsPick").on("click", false);
 let OMDBSearchData = JSON.parse(localStorage.getItem("SearchData"));
 $("#Movie-Title").text(OMDBSearchData.Title);
+$("#OMDB-plot").text("Plot: " + OMDBSearchData.Plot);
 $("#OMDB-List").children().eq(0).text("Actors: " + OMDBSearchData.Actors);
 $("#OMDB-List").children().eq(1).text("Box Office: " + OMDBSearchData.BoxOffice);
 $("#OMDB-List").children().eq(2).text("Director: " + OMDBSearchData.Director);
 $("#OMDB-List").children().eq(3).text("Genre: " + OMDBSearchData.Genre);
 $("#OMDB-List").children().eq(4).text("Language: " + OMDBSearchData.Language);
 $("#OMDB-List").children().eq(5).text("Year: " + OMDBSearchData.Released);
+
 
 let requestURL = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?api-key=UhbjB3IK8YrmeGTWJGAeO8LCdASCHWdA";
 requestURL += "&query=" + OMDBSearchData.Title;
@@ -42,6 +44,10 @@ function DisplayNYTimesData(p_NYTimesSearchData){
     $("#CriticsPick").val(_reviewData.critics_pick === 1 ? true:false);
     $("#Summary").text(_reviewData.summary_short);
     $("#Published").text(_reviewData.publication_date)
+    let nyArticle = $("<a>");
+    nyArticle.text("Click here to see NY Times Review of movie!");
+    nyArticle.attr("href", _reviewData.link.url);
+    $("#abc").append(nyArticle);
 }
 
 function PickReview(p_NYTimesSearchData){
@@ -114,8 +120,10 @@ function FormatOMDBDate(p_OMDBDate){
 }
 
 function OnReviewsNone(){
-
+    $("#NYT-search-result").text("No results found!");
 }
+
+
 
 
 
