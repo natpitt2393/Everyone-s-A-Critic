@@ -44,8 +44,10 @@ function DisplayNYTimesData(p_NYTimesSearchData){
     $("#CriticsPick").val(_reviewData.critics_pick === 1 ? true:false);
     $("#Summary").text(_reviewData.summary_short);
     $("#Published").text(_reviewData.publication_date)
-    $("#urlToArticle").text(_reviewData.link.url);
-    $("#urlToArticle").attr("href", _reviewData.link.url);
+    let nyArticle = $("<a>");
+    nyArticle.text("Click here to see NY Times Review of movie!");
+    nyArticle.attr("href", _reviewData.link.url);
+    $("#abc").append(nyArticle);
 }
 
 function PickReview(p_NYTimesSearchData){
