@@ -2,10 +2,14 @@ header {
     text-align: center;
 }
 
+body {
+    height: 100%;
+}
+
 .popcorn {
     background-image: url(https://s3.amazonaws.com/images.ecwid.com/images/27221405/1376656712.jpg);
     background-color: #CCCCCC; 
-    height: 500px; 
+    height: 800px; 
     background-position: center; 
     background-repeat: no-repeat; 
     background-size: cover; 
@@ -14,12 +18,13 @@ header {
 .searchbox {
     display: flex;
     justify-content: center;
-    margin-top: 300px;
-    text-align: center;
+    padding-top: 200px;
 }
 
 .search-text {
-    font-size: 30px;
+    
+
+    font-size: 50px;
     font-weight: bolder;
     color: black;
 }
@@ -28,12 +33,53 @@ header {
     margin-top: 10px;
 }
 
-.container {
-    margin-top: 50px;
-}
+
 .movie-name {
     display: flex;
     justify-content: center;
     text-align: center;
 }
 
+#footer{
+    background-color: hsl(348, 100%, 61%);
+}
+
+.footer-content {
+    text-align: center;
+    /* margin-top: 20px; */
+}
+
+/* Below here is for the results HTML */
+
+.movie-placeholder {
+    display: flex;
+    justify-content: center;
+    font-size: 90px;
+    margin: 60px 0px;
+}
+
+.content {
+    color: red;
+    display: flex;
+    flex-direction: inline;
+    padding: 10px 50px 20px;
+}
+
+#xyz {
+    padding: 10px 50px 20px;
+    border: 5px outset;
+    margin: 10px;
+}
+
+#result-header {
+    height: 100px;
+}
+
+#result-title {
+    margin-top: 20px;
+}
+
+#home-button {
+    display: flex;
+    justify-content: center;
+}
