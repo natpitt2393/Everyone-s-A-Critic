@@ -13,7 +13,7 @@ function FetchData(p_name, p_year){
     let requestURL = "http://www.omdbapi.com/?apikey=4c323fb9&";
     requestURL += "t="+p_name;
     if (p_year !== "") {
-        requestURL += "y=" + p_year;
+        requestURL += "&y=" + p_year;
     } 
     fetch(requestURL)
         .then(function(response){
@@ -21,6 +21,8 @@ function FetchData(p_name, p_year){
             if(response.status !== 200){
                 //Do Stuff
             }
+
+            //console.log(response)
             return response.json();
         })
         .then(function(data){

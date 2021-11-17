@@ -26,3 +26,12 @@ fetch(requestURL)
         //Do Something in case of error
         console.log("Error: " + error);
     });
+
+
+    // when a user types in a movies
+    // call an API to get movie data
+    // save the movie data in LS
+    // got to a diff page
+    // get that data from LS and put in on the result page--
+    // use that data from LS to make another call to NYT
+    // put that data on the screen
