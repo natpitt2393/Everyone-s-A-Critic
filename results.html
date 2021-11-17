@@ -13,7 +13,7 @@
         <h1 class="title title is-1" id="result-title">Everyone's A Critic</h1>
     </header>
     
-    <h1 class="movie-placeholder is-underlined"> Movie Name Goes Here:</h1>
+    <h1 class="movie-placeholder is-underlined" id="Movie-Title"> Movie Name Goes Here:</h1>
 
     <div class="content">
         <section class="column is-three-fifths" id="xyz">
@@ -21,6 +21,14 @@
             <h2 class="subtitle">
              A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading.
              rmgowsimr5gp;omqworimesormgseoirmgosergemsoertgmostmgosdrtimoimhodrmhoimdrsthoimdrth
+             <ul id="OMDB-List">
+                 <li>Actor: </li>
+                 <li>Box Office: </li>
+                 <li>Director: </li>
+                 <li>Genre: </li>
+                 <li>Language: </li>
+                 <li>Year: </li>
+             </ul>
          </h2>
          </section>
 
@@ -28,18 +36,19 @@
             <h1 class="is-size-1 is-underlined">Review</h1>
             <h2 class="subtitle">
              A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading.
-            
-         </h2>
+            </h2>
+            <label for="CriticsPick">CriticsPick</label>
+            <input id="CriticsPick" type="checkbox" name="CriticsPick">
+            <h2 id="Headline"></h2>
+            <h3 id="Byline"> <span id="Published"></span></h3>
+            <p id="Summary"></p>
+
         </section>
     </div>
 
     <div id="home-button">
         <a href="index.html"><button class="button is-black is-medium"> Back to Search!</button></a>
     </div>
-
-
-
-
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
