@@ -20,7 +20,12 @@ function FetchData(p_name){
             return response.json();
         })
         .then(function(data){
-            // Validate data 
+            // Validate data
+            if (data.Released === "N/A")
+            {
+                //Give error
+                return;
+            }
             console.log(data);
             // Save to storage
             localStorage.setItem("SearchData", JSON.stringify(data))
