@@ -9,37 +9,58 @@ function OnSubmit(event){
     FetchData(movieName, year);
 }
 
-function FetchData(p_name, p_year){
-    let requestURL = "https://www.omdbapi.com/?apikey=4c323fb9&";
-    requestURL += "t="+p_name;
-    if (p_year !== "") {
-        requestURL += "&y=" + p_year;
-    } 
+function FetchData(p_name){
+    let requestURL = "https://api.themoviedb.org/3/search/movie?api_key=cba89e07597df25af6057ff006d6ebc5&query=Saw";
+    requestURL += "query="+p_name;
+   
     fetch(requestURL)
         .then(function(response){
-            //Check response status
-            if(response.status !== 200){
-                //Do Stuff
-            }
-
-            //console.log(response)
+           
             return response.json();
         })
         .then(function(data){
-            // Validate data
-            if (data.Response === "False")
-            {
-                //Give error
-                //alert("Movie not found! Try searching again!");
-                return;
-            }
-            console.log(data);
-            // Save to storage
-            localStorage.setItem("SearchData", JSON.stringify(data))
-             window.location.assign(resultPageURl);
+
+            displaySearchData(data);
+
+
         })
+            
+           
         .catch(function(error){
             //Do Something in case of error
             console.log("Error: " + error);
         });
+}
+
+function displaySearchData(p_data) {
+    //for every result first create a new card for it. 
+    // For every new card display all pertinent info about movie.
+    // overview (plot), release_date, title, and poster
+    for (let i = 0; i < data.results.length; i++) {
+       let _card = generateCard();
+    }
+
+}
+
+// let imagepath = themoviedb.org/t/p/w1280/[addimagepathhere]
+function generateCard() {
+    let _card = $("<div>");
+    _card.attr("class", "movie-card");
+    let _posterContainer = $("<div>");
+    _posterContainer.attr("class", "poster-image");
+    let _figure = $("<figure>");
+    _figure.attr("class", "");
+    let _posterImage = $("<img>");
+    _posterContainer.append([_figure, _posterImage]);
+    let _cardContentContainer = $("<div>");
+    _cardContentContainer.attr("class", "card-content");
+    let _movieName = $("<div>");
+    _movieName.attr("class", "movie-name");
+    let _movieDate = $("<div>");
+    _movieDate.attr("class", "movie-date");
+    let _movieOverview = $("<div>");
+    _movieOverview.attr("class", "movie-overview");
+    _cardContentContainer.append([_movieName, _movieDate, _movieOverview]);
+    _card.append([_posterContainer, _cardContentContainer]);
+
 }
