@@ -10,34 +10,19 @@ function OnSubmit(event){
 }
 
 function FetchData(p_name, p_year){
-    let requestURL = "https://www.omdbapi.com/?apikey=4c323fb9&";
-    requestURL += "t="+p_name;
-    if (p_year !== "") {
-        requestURL += "&y=" + p_year;
-    } 
+    let requestURL = "";
+    requestURL += "query="+p_name;
     fetch(requestURL)
-        .then(function(response){
-            //Check response status
-            if(response.status !== 200){
-                //Do Stuff
-            }
-
-            //console.log(response)
-            return response.json();
-        })
-        .then(function(data){
-            // Validate data
-            if (data.Response === "False")
-            {
-                //Give error
-                //alert("Movie not found! Try searching again!");
-                return;
-            }
-            console.log(data);
-            // Save to storage
-            localStorage.setItem("SearchData", JSON.stringify(data))
-             window.location.assign(resultPageURl);
-        })
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data){
+        console.log(data);
+        //Loop through and find search criteria
+        // Save to storage
+        //localStorage.setItem("SearchData", data);
+        //window.location.assign(resultPageURl);
+    })
         .catch(function(error){
             //Do Something in case of error
             console.log("Error: " + error);
