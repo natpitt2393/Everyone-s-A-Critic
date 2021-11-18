@@ -15,7 +15,7 @@ $("#OMDB-List").children().eq(4).text("Language: " + OMDBSearchData.Language);
 $("#OMDB-List").children().eq(5).text("Year: " + OMDBSearchData.Released);
 
 let requestURL = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?api-key=UhbjB3IK8YrmeGTWJGAeO8LCdASCHWdA";
-requestURL += "&query=" + OMDBSearchData.Title;
+requestURL += "&query="+OMDBSearchData.Title;
 fetch(requestURL)
     .then(function (response) {
         //Check response status
