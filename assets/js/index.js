@@ -10,7 +10,7 @@ function OnSubmit(event){
 }
 
 function FetchData(p_name, p_year){
-    let requestURL = "http://www.omdbapi.com/?apikey=4c323fb9&";
+    let requestURL = "https://www.omdbapi.com/?apikey=4c323fb9&";
     requestURL += "t="+p_name;
     if (p_year !== "") {
         requestURL += "&y=" + p_year;
@@ -27,9 +27,10 @@ function FetchData(p_name, p_year){
         })
         .then(function(data){
             // Validate data
-            if (data.Released === "N/A")
+            if (data.Response === "False")
             {
                 //Give error
+                //alert("Movie not found! Try searching again!");
                 return;
             }
             console.log(data);

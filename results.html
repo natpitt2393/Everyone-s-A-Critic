@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,34 +9,34 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Movie Search Results</title>
 </head>
-<body>
+
+<body id="results-html">
     <header class="hero is-danger" id="result-header">
         <h1 class="title title is-1" id="result-title">Everyone's A Critic</h1>
     </header>
-    
+
     <h1 class="movie-placeholder is-underlined" id="Movie-Title"> Movie Name Goes Here:</h1>
 
     <div class="content">
         <section class="column is-three-fifths" id="xyz">
             <h1 class="is-size-1 is-underlined">OMDB</h1>
-            <h2 class="subtitle">
-             A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading.
-             rmgowsimr5gp;omqworimesormgseoirmgosergemsoertgmostmgosdrtimoimhodrmhoimdrsthoimdrth
-             <ul id="OMDB-List">
-                 <li>Actor: </li>
-                 <li>Box Office: </li>
-                 <li>Director: </li>
-                 <li>Genre: </li>
-                 <li>Language: </li>
-                 <li>Year: </li>
-             </ul>
-         </h2>
-         </section>
+            <h2 class="subtitle" id="OMDB-plot"></h2>
+            <ul id="OMDB-List">
+                <li>Actor: </li>
+                <li>Box Office: </li>
+                <li>Director: </li>
+                <li>Genre: </li>
+                <li>Language: </li>
+                <li>Year: </li>
+            </ul>
+            </h2>
+        </section>
 
-        <section class="column is-two-fifths" id="xyz">
+        <section class="column is-two-fifths" id="abc">
             <h1 class="is-size-1 is-underlined">Review</h1>
-            <h2 class="subtitle">
-             A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading.
+            <h2 class="subtitle" id="NYT-search-result">
+                A simple container to divide your page into <strong>sections</strong>, like the one you're currently
+                reading.
             </h2>
             <label for="CriticsPick">CriticsPick</label>
             <input id="CriticsPick" type="checkbox" name="CriticsPick">
@@ -55,4 +56,5 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="./assets/js/results.js"></script>
 </body>
+
 </html>
