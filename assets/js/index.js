@@ -66,7 +66,7 @@ function FetchData(p_name, p_year){
             SwitchPageLayout();
         })
             
-           
+
         .catch(function(error){
             //Do Something in case of error
             console.log("Error: " + error);
@@ -213,7 +213,7 @@ function MoveToPage(p_pageNum){
 }
 
 function AddCardClickEvent(p_wrapperAnchor){
-    p_wrapperAnchor.addEventListener("click", OnCardClicked);
+    p_wrapperAnchor.on("click", OnCardClicked);
 }
 
 function OnCardClicked(event){
