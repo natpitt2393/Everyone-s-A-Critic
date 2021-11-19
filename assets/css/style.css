@@ -71,12 +71,11 @@ body {
     display: flex;
     flex-flow: column nowrap;
     align-content: space-around;
-
-
-    
 }
+
 .card-content {
-    background-color: red;
+    background-color: black;
+    color: white;
 }
 
 .navbtns {
@@ -84,7 +83,9 @@ body {
     justify-content: center;
 }
 
-
+.hide{
+    display: none;
+}
 
 
 /* Below here is for the results HTML */

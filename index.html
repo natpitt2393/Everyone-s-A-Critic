@@ -12,7 +12,6 @@
 
 <body>
     
-
     <header class="hero is-danger">
         <h1 class="title title is-1">Everyone's A Critic</h1>
         <p class="subtext subtitle is-3">The purpose of this website is to allow rabid movie fans to look up movies they want to see or movies they
@@ -20,145 +19,27 @@
             for more crticial analysis.</p>
     </header>
 
-
     <main class="popcorn">
         <!--We can always add more input boxes for different search criteria (i.e. year, actor, director)-->
-    <!-- <div class="searchbox">
+        <div class="searchbox" id="searchSection">
             <form id="SearchForm">
-            <label class="search-text" for="movie-search">Search Your Movie </label>
-            <input id="search-bar" class="input is-primary" type="text" placeholder="Search by movie title">
-            <input id="year-field" class="input is-primary" type="text" placeholder="Search by year">
-            <input id="Form-Submit" class="button button is-black" type="submit" value="Search">
+                <label class="search-text" for="movie-search">Search Your Movie </label>
+                <input id="search-bar" class="input is-primary" type="text" placeholder="Search by movie title">
+                <input id="year-field" class="input is-primary" type="text" placeholder="Search by year">
+                <input id="Form-Submit" class="button button is-black" type="submit" value="Search">
             </form>
-    </div> -->
-
-    <section class="movie-section">
-
-        <div class="movie-card">
-                <div class="poster-image">
-                    <figure class="" ></figure>
-                    <img src="https://via.placeholder.com/150x200" alt="placeholder">
-                </div>
-
-            
-            <div class="card-content">
-                <div class="movie-name">
-                MOVIE NAME
-                </div>
-
-                <div class="movie-date">
-                    movie date
-                </div>
-
-                <div class="movie-overview">
-                   this is a movie summary for the movie that probably sucks
-                </div>
-            </div>
         </div>
 
-        <div class="movie-card">
-            <div class="poster-image">
-                <figure class="" ></figure>
-                <img src="https://via.placeholder.com/150x200" alt="placeholder">
-            </div>
+        <!--Section for the movie results-->
+        <section class="movie-section" id="movieSection"></section>
 
-        
-        <div class="card-content">
-            <div class="movie-name">
-            MOVIE NAME
-            </div>
-
-            <div class="movie-date">
-                movie date
-            </div>
-
-            <div class="movie-overview">
-               this is a movie summary for the movie that probably sucks
-            </div>
-        </div>
-    </div>
-
-    <div class="movie-card">
-        <div class="poster-image">
-            <figure class="" ></figure>
-            <img src="https://via.placeholder.com/150x200" alt="placeholder">
-        </div>
-
-    
-    <div class="card-content">
-        <div class="movie-name">
-        MOVIE NAME
-        </div>
-
-        <div class="movie-date">
-            movie date
-        </div>
-
-        <div class="movie-overview">
-           this is a movie summary for the movie that probably sucks
-        </div>
-    </div>
-</div>
-
-
-<div class="movie-card">
-    <div class="poster-image">
-        <figure class="" ></figure>
-        <img src="https://via.placeholder.com/150x200" alt="placeholder">
-    </div>
-
-
-<div class="card-content">
-    <div class="movie-name">
-    MOVIE NAME
-    </div>
-
-    <div class="movie-date">
-        movie date
-    </div>
-
-    <div class="movie-overview">
-       this is a movie summary for the movie that probably sucks
-    </div>
-</div>
-</div>
-
-<div class="movie-card">
-    <div class="poster-image">
-        <figure class="" ></figure>
-        <img src="https://via.placeholder.com/150x200" alt="placeholder">
-    </div>
-
-
-<div class="card-content">
-    <div class="movie-name">
-    MOVIE NAME
-    </div>
-
-    <div class="movie-date">
-        movie date
-    </div>
-
-    <div class="movie-overview">
-       this is a movie summary for the movie that probably sucks
-    </div>
-</div>
-</div>
-
-    </section>
-
-
-    <section class="navbtns">
-        <button id="backbtn" class="button button is-black">Back</button>
-            <div id="pagenum">
-
-            </div>
-        <button id="nextbtn" class="button button is-black">Next Page</button>
-    </section>
-
+        <section class="navbtns" id="navBtns">
+            <button id="backbtn" class="button button is-black">Back</button>
+            <div id="pageNumContainer"></div>
+            <button id="nextbtn" class="button button is-black">Next Page</button>
+        </section>
     </main>
-
-
+    
     <footer id="footer"><p class="footer-content">This was created by: Christopher Tangarife, Nathaniel Epstein, Brian Smith, Noel Ramirez</p></footer>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
