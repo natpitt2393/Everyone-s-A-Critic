@@ -17,7 +17,7 @@ $("#TMDB-List").children().eq(5).text("Year: " + TMDBSearchData.Released);
 
 
 let requestURL = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?api-key=UhbjB3IK8YrmeGTWJGAeO8LCdASCHWdA";
-requestURL += "&query="+TMDBSearchData.Title;
+requestURL += "&query="+TMDBSearchData.title;
 fetch(requestURL)
     .then(function (response) {
         //Check response status
@@ -73,51 +73,7 @@ function CompareDates(p_OMDBDate, p_NYTimesDate){
     return p_OMDBDate === p_NYTimesDate;
 }
 
-//Returns OMDB date formatted like NYTimesDate
-function FormatOMDBDate(p_OMDBDate){
-    // Values: 0 - day, 1 - month, 2 - year
-    let p_OMDBDateValues = p_OMDBDate.split(" ");
-    switch(p_OMDBDateValues[1])
-    {
-        case "Jan":
-            p_OMDBDateValues[1] = "01";
-            break;
-        case "Feb":
-            p_OMDBDateValues[1] = "02";
-            break;
-        case "Mar":
-            p_OMDBDateValues[1] = "03";
-            break;
-        case "Apr":
-            p_OMDBDateValues[1] = "04";
-            break;
-        case "May":
-            p_OMDBDateValues[1] = "05";
-            break;
-        case "Jun":
-            p_OMDBDateValues[1] = "06";
-            break;
-        case "Jul":
-            p_OMDBDateValues[1] = "07";
-            break;
-        case "Aug":
-            p_OMDBDateValues[1] = "08";
-            break;
-        case "Sep":
-            p_OMDBDateValues[1] = "09";
-            break;
-        case "Oct":
-            p_OMDBDateValues[1] = "10";
-            break;
-        case "Nov":
-            p_OMDBDateValues[1] = "11";
-            break;
-        case "Dec":
-            p_OMDBDateValues[1] = "12";
-            break;
-    }
-    return p_OMDBDateValues[2] + "-" + p_OMDBDateValues[1] + "-" + p_OMDBDateValues[0];
-}
+
 
 function OnReviewsNone(){
     $("#NYT-search-result").text("No results found!");
