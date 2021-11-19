@@ -75,7 +75,7 @@ body {
 #xyz, #abc {
     background-color: yellow;
     padding: 10px 50px 20px;
-    border: 5px outset;
+    border: 10px outset;
     margin: 10px;
 }
 
