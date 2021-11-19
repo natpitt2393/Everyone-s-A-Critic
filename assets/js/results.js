@@ -5,19 +5,19 @@
 //TODO:  Test Search for date validation
 //iframe URL
 $("#CriticsPick").on("click", false);
-let OMDBSearchData = JSON.parse(localStorage.getItem("SearchData"));
-$("#Movie-Title").text(OMDBSearchData.Title);
-$("#OMDB-plot").text("Plot: " + OMDBSearchData.Plot);
-$("#OMDB-List").children().eq(0).text("Actors: " + OMDBSearchData.Actors);
-$("#OMDB-List").children().eq(1).text("Box Office: " + OMDBSearchData.BoxOffice);
-$("#OMDB-List").children().eq(2).text("Director: " + OMDBSearchData.Director);
-$("#OMDB-List").children().eq(3).text("Genre: " + OMDBSearchData.Genre);
-$("#OMDB-List").children().eq(4).text("Language: " + OMDBSearchData.Language);
-$("#OMDB-List").children().eq(5).text("Year: " + OMDBSearchData.Released);
+let TMDBSearchData = JSON.parse(localStorage.getItem("TMDBSearchData"));
+$("#Movie-Title").text(TMDBSearchData.Title);
+$("#TMDB-plot").text("Plot: " + TMDBSearchData.Plot);
+$("#TMDB-List").children().eq(0).text("Actors: " + TMDBSearchData.Actors);
+$("#TMDB-List").children().eq(1).text("Box Office: " + TMDBSearchData.BoxOffice);
+$("#TMDB-List").children().eq(2).text("Director: " + TMDBSearchData.Director);
+$("#TMDB-List").children().eq(3).text("Genre: " + TMDBSearchData.Genre);
+$("#TMDB-List").children().eq(4).text("Language: " + TMDBSearchData.Language);
+$("#TMDB-List").children().eq(5).text("Year: " + TMDBSearchData.Released);
 
 
 let requestURL = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?api-key=UhbjB3IK8YrmeGTWJGAeO8LCdASCHWdA";
-requestURL += "&query=" + OMDBSearchData.Title;
+requestURL += "&query="+TMDBSearchData.Title;
 fetch(requestURL)
     .then(function (response) {
         //Check response status
@@ -53,7 +53,7 @@ function DisplayNYTimesData(p_NYTimesSearchData){
 function PickReview(p_NYTimesSearchData){
     if (p_NYTimesSearchData.results.length === 0) {OnReviewsNone(); return; }
     for(let i = 0; i < p_NYTimesSearchData.results.length; i++){
-        if(CompareDates(OMDBSearchData.Released, p_NYTimesSearchData.results[i].opening_date)){
+        if(CompareDates(TMDBSearchData.Released, p_NYTimesSearchData.results[i].opening_date)){
             return p_NYTimesSearchData.results[i];
         }
     }
