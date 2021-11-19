@@ -6,14 +6,8 @@
 //iframe URL
 $("#CriticsPick").on("click", false);
 let TMDBSearchData = JSON.parse(localStorage.getItem("TMDBSearchData"));
-$("#Movie-Title").text(TMDBSearchData.Title);
-$("#TMDB-plot").text("Plot: " + TMDBSearchData.Plot);
-$("#TMDB-List").children().eq(0).text("Actors: " + TMDBSearchData.Actors);
-$("#TMDB-List").children().eq(1).text("Box Office: " + TMDBSearchData.BoxOffice);
-$("#TMDB-List").children().eq(2).text("Director: " + TMDBSearchData.Director);
-$("#TMDB-List").children().eq(3).text("Genre: " + TMDBSearchData.Genre);
-$("#TMDB-List").children().eq(4).text("Language: " + TMDBSearchData.Language);
-$("#TMDB-List").children().eq(5).text("Year: " + TMDBSearchData.Released);
+$("#Movie-Title").text(TMDBSearchData.title);
+
 
 
 let requestURL = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?api-key=UhbjB3IK8YrmeGTWJGAeO8LCdASCHWdA";
@@ -53,7 +47,7 @@ function DisplayNYTimesData(p_NYTimesSearchData){
 function PickReview(p_NYTimesSearchData){
     if (p_NYTimesSearchData.results.length === 0) {OnReviewsNone(); return; }
     for(let i = 0; i < p_NYTimesSearchData.results.length; i++){
-        if(CompareDates(TMDBSearchData.Released, p_NYTimesSearchData.results[i].opening_date)){
+        if(CompareDates(TMDBSearchData.release_date, p_NYTimesSearchData.results[i].opening_date)){
             return p_NYTimesSearchData.results[i];
         }
     }
@@ -63,14 +57,17 @@ function PickReview(p_NYTimesSearchData){
 
 //OMDB Date format: Day Month(short) Year Ex: 21 Nov 2003
 //NYTimes Date format Year-Month(num)-Day Ex: 2003-11-21
-function CompareDates(p_OMDBDate, p_NYTimesDate){
+function CompareDates(p_TMDBDate, p_NYTIMESDate){
     // Previous function exits if no review so this should not happen but idk just in case I made this check
-    if (p_OMDBDate === "N/A") { 
-        console.log("Warning: OMDB release date was equal to N/A. Investigate as this case should most likely never happen."); 
+    if (p_TMDBDate === "N/A") { 
+        console.log("Warning: TMDB release date was equal to N/A. Investigate as this case should most likely never happen."); 
         return; 
     }
-    p_OMDBDate = FormatOMDBDate(p_OMDBDate);
-    return p_OMDBDate === p_NYTimesDate;
+
+    
+    let years =  formatDate(p_TMDBDate, p_NYTIMESDate);
+    return years.TMDBDate === years.NYTIMESDate;
+    
 }
 
 
@@ -80,7 +77,13 @@ function OnReviewsNone(){
 }
 
 
-
+function formatDate(p_TMDBDate, p_NYTIMESDate) {
+    let dates = {
+        TMDBDate:  p_TMDBDate.substring(0,4),
+        NYTIMESDate: p_NYTIMESDate.substring(0,4)
+    };
+    return dates; 
+}
 
 
     // when a user types in a movies
