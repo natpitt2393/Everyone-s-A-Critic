@@ -3,7 +3,7 @@ const PLACEHOLDERIMG = "https://via.placeholder.com/150"
 // Capture search info
 let resultPageURl = "./results.html";
 let searchData;
-let currentPage;
+let currentPage = 1;
 let numOfPages;
 // Effective Enum with two values: Search and Results
 let currentPageLayout = "Search"; //Default value is search
@@ -29,6 +29,7 @@ $("#pageNumContainer").on("click", event => {
     event.preventDefault();
     if (event.target.tagName === "A") {
         let index = event.target.id.replace("num", "");
+        console.log(index);
         MoveToPage(index);
         UpdateNumIds(index === "current" ? currentPage : index);
     } else {
@@ -38,15 +39,13 @@ $("#pageNumContainer").on("click", event => {
 
 function UpdateNumIds(currentIndex){
     let children = $("#pageNumContainer").children()
-    for (let i = 1; i <= children.length; i++){
-        console.log("Pre: " + children.eq(i).attr("id"));
+    for (let i = 0; i <  children.length; i++){
         currentIndex = parseInt(currentIndex, 10);
-        if (i == currentIndex){
-            children.eq(i-1).attr("id", "current");
+        if (i+1 == currentPage){
+            children.eq(i).attr("id", "current");
         } else {
-            children.eq(i-1).attr("id", "num"+i);
+            children.eq(i).attr("id", "num"+(i+1));
         }
-        console.log("Post: " + children.eq(i).attr("id"));
     }
 }
 
@@ -74,7 +73,6 @@ function FetchData(p_name) {
             return response.json();
         })
         .then(function (data) {
-            currentPage = 1;
             currentPageLayout = "Results";
             searchData = data;
             numOfPages = Math.ceil(data.results.length / MAXCARDSPERPAGE);
@@ -96,7 +94,7 @@ function displaySearchData(p_startIndex) {
     // overview (plot), release_date, title, and poster
     for (let i = p_startIndex; i < MAXCARDSPERPAGE + p_startIndex; i++) {
         if (!searchData) { console.warn("Search data is null"); return; }
-        if (!searchData.results[i]) { return; }
+        if (!searchData.results[i]) { break; }
         let _card = generateCard();
         if (searchData.results[i].poster_path != null) {
             _card.posterImageEl.attr("src", "https://themoviedb.org/t/p/w1280/" + searchData.results[i].poster_path);
@@ -112,6 +110,7 @@ function displaySearchData(p_startIndex) {
         AddCardClickEvent(_card.wrapperAnchor);
         $("#movieSection").append(_card.wrapperAnchor);
     }
+    CheckPagesLeft();
 }
 
 
@@ -122,7 +121,7 @@ function DisplayPageNumbers() {
         //Create number element
         let numberEl = $("<a>");
         if (i === currentPage) {
-            numberEl.attr("id", "currentnum");
+            numberEl.attr("id", "current");
         } else {
             numberEl.attr("id", "num" + i);
             numberEl.attr("class", "pagenum");
@@ -178,7 +177,7 @@ function DisplayNextPage() {
     }
     currentPage++;
     displaySearchData((currentPage * MAXCARDSPERPAGE) - MAXCARDSPERPAGE);
-    CheckPagesLeft();
+    UpdateNumIds();
 }
 
 //For on back button clicked
@@ -191,29 +190,35 @@ function DisplayPreviousPage() {
     }
     currentPage--;
     displaySearchData((currentPage * MAXCARDSPERPAGE) - MAXCARDSPERPAGE);
-    CheckPagesLeft();
+    UpdateNumIds(); 
 }
 
 //Fix enable code and fix backBtn disable condition
 function CheckPagesLeft() {
+    console.log("CurrentPage: "  + currentPage);
+    console.log("NumOfPages: " + numOfPages);
     let _nextBtn = $("#nextbtn");
     let _backBtn = $("#backbtn");
     if (currentPage == numOfPages) {
         //Disable Next Button
         _nextBtn.prop("disabled", true);
-        console.log("ButtonDisabled")
     } else if (currentPage == 1) {
         //Disable Back Button
         _backBtn.prop("disabled", true);
-        console.log("ButtonDisabled")
     }
-    if (_nextBtn.prop("disabled") && !currentPage == numOfPages) {
+    console.log("Next: " + _nextBtn.prop("disabled"));
+    console.log("Next: " + (currentPage == numOfPages));
+    if (_nextBtn.prop("disabled") && !(currentPage == numOfPages)) {
         //Enable Next Button if disabled
         _nextBtn.prop("disabled", false);
+        console.log("NextButtonEnabled")
     }
-    if (_backBtn.prop("disabled") && !currentPage == 1) {
+    console.log("Back: " + _backBtn.prop("disabled"));
+    console.log("Back: " + (currentPage == 1));
+    if (_backBtn.prop("disabled") && !(currentPage == 1)) {
         //Enable Back Button if disabled
         _backBtn.prop("disabled", false);
+        console.log("BackButtonEnabled")
     }
 }
 
@@ -224,10 +229,8 @@ function MoveToPage(p_pageNum) {
         return;
     }
     if(p_pageNum === "current") { return;}
-    console.log(p_pageNum);
-    displaySearchData((p_pageNum * MAXCARDSPERPAGE) - MAXCARDSPERPAGE);
     currentPage = p_pageNum;
-    CheckPagesLeft();
+    displaySearchData((p_pageNum * MAXCARDSPERPAGE) - MAXCARDSPERPAGE);
 }
 
 function AddCardClickEvent(p_wrapperAnchor) {
