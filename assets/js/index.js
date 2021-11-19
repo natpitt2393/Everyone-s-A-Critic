@@ -193,20 +193,20 @@ function DisplayPreviousPage() {
 function CheckPagesLeft() {
     let _nextBtn = $("#nextbtn");
     let _backBtn = $("#backbtn");
-    if (currentPage + 1 > numOfPages) {
+    if (currentPage == numOfPages) {
         //Disable Next Button
         _nextBtn.prop("disabled", true);
         console.log("ButtonDisabled")
-    } else if (currentPage - 1 < 1) {
+    } else if (currentPage == 1) {
         //Disable Back Button
         _backBtn.prop("disabled", true);
         console.log("ButtonDisabled")
     }
-    if (_nextBtn.prop("disabled") && !currentPage + 1 > numOfPages) {
+    if (_nextBtn.prop("disabled") && !currentPage == numOfPages) {
         //Enable Next Button if disabled
         _nextBtn.prop("disabled", false);
     }
-    if (_backBtn.prop("disabled") && !currentPage - 1 < 1) {
+    if (_backBtn.prop("disabled") && !currentPage == 1) {
         //Enable Back Button if disabled
         _backBtn.prop("disabled", false);
     }
