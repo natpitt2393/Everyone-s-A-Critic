@@ -67,9 +67,9 @@ function FetchData(p_name, p_year){
         })
             
            
-        .catch(function(error){
+        .catch(function(error) {
             //Do Something in case of error
-            console.log("Error: " + error);
+
         });
 }
 
