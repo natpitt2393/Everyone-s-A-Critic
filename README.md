@@ -2,7 +2,6 @@
 
   ## Table of Contents
 * [Description](#description)
-* [Installation](#installation)
 * [Usage](#usage)
 * [License](#license)
 * [Contributors](#contributors)
@@ -10,12 +9,12 @@
 
 ## Description
 Everyone's a Critic is a website that will movie enthusiasts or the average movie-goer can visit to find reviews about a number of movies they are interested. By asking the user to input the movie title and the year (if they choose) they will be populated with movie results matching their criteria. 
-## Install
-No install needed.
 ## Usage
 People can use "Everyone's A Critic" to find out about if a movie they are interested in going to see is worth seeing. They can find a review of the movie on our site.
 ## License
-No license.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+Copyright (c) [2021] [Christopher Tangarife, Nathaniel Epstein, Brian Smith, Noel Ramirez]
 ## Contributors
 Christopher Tangarife, Nathaniel Epstein, Brian Smith, and Noel Ramirez
 ## Questions
@@ -32,6 +31,6 @@ Check out our other works on our respective github profiles: [Chris](https://git
 [Brian](https://github.com/bjtsmith23) , 
 [Noel](https://github.com/Namagaii).
 # Screenshots
-![User's first view when opened (time subject to change depending on when opened](dayplanner.png)
+![User's first view when they go to the site](./assets/images/homepage.png)
 
-![Mock up of daily use with the planner](usingdayplanner.png)
+![Example of a search result that the user would see](./assets/images/searchresults.png)

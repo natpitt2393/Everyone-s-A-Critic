@@ -79,9 +79,16 @@ body {
     height: auto;
 }
 
+#current {
+    color: white;
+}
 
 
 
+
+#pageNumContainer a{
+    margin: 4px;
+}
 
 .movie-section {
     display: flex;
@@ -99,6 +106,15 @@ body {
 .navbtns {
     display: flex;
     justify-content: center;
+
+}
+
+#goBackToSearch {
+    margin-right: 65px;
+}
+
+.button {
+    margin-bottom: 20px;
 }
 
 .hide{
