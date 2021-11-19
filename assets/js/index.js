@@ -213,7 +213,7 @@ function MoveToPage(p_pageNum){
 }
 
 function AddCardClickEvent(p_wrapperAnchor){
-    p_wrapperAnchor.addEventListener("click", OnCardClicked);
+    p_wrapperAnchor.on("click", OnCardClicked);
 }
 
 function OnCardClicked(event){
