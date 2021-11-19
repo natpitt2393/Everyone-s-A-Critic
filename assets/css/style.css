@@ -65,12 +65,30 @@ body {
     flex-direction: row;
     justify-content: center;
     padding: 20px 0px;
+    height: 500px;
+    width: 700px;
+    
+}
+
+.poster-image {
+    overflow: hidden;
+}
+
+.poster-image img {
+    width: auto;
+    height: auto;
+}
+
+#pageNumContainer a{
+    margin: 4px;
 }
 
 .movie-section {
     display: flex;
     flex-flow: column nowrap;
     align-content: space-around;
+    margin-left: 700px;
+    /* margin-right: 50px; */
 }
 
 .card-content {
