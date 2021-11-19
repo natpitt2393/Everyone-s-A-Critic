@@ -31,11 +31,22 @@ $("#pageNumContainer").on("click", event => {
         let index = event.target.id.replace("num", "");
         console.log(index);
         MoveToPage(index);
-        event.target.id = "current";
+        UpdateNumIds(currentIndex);
     } else {
         console.log("Idk events be complex")
     }
 });
+
+function UpdateNumIds(currentIndex){
+    let children = $("#pageNumContainer").children()
+    for (let i = 0; i < children.length; i++){
+        if (i == currentIndex){
+            children.eq(i).attr("id", "current");
+        } else {
+            children.eq(i).attr("id", ""+i);
+        }
+    }
+}
 
 function SwitchPageLayout() {
     if (currentPageLayout === "Search") {
