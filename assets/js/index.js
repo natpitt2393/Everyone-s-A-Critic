@@ -29,9 +29,8 @@ $("#pageNumContainer").on("click", event => {
     event.preventDefault();
     if (event.target.tagName === "A") {
         let index = event.target.id.replace("num", "");
-        console.log(index);
         MoveToPage(index);
-        UpdateNumIds(index);
+        UpdateNumIds(index === "current" ? currentPage : index);
     } else {
         console.log("Idk events be complex")
     }
@@ -40,11 +39,14 @@ $("#pageNumContainer").on("click", event => {
 function UpdateNumIds(currentIndex){
     let children = $("#pageNumContainer").children()
     for (let i = 1; i <= children.length; i++){
+        console.log("Pre: " + children.eq(i).attr("id"));
+        currentIndex = parseInt(currentIndex, 10);
         if (i == currentIndex){
-            children.eq(i).attr("id", "current");
+            children.eq(i-1).attr("id", "current");
         } else {
-            children.eq(i).attr("id", ""+i);
+            children.eq(i-1).attr("id", "num"+i);
         }
+        console.log("Post: " + children.eq(i).attr("id"));
     }
 }
 
@@ -72,7 +74,6 @@ function FetchData(p_name) {
             return response.json();
         })
         .then(function (data) {
-            console.log(data)
             currentPage = 1;
             currentPageLayout = "Results";
             searchData = data;
@@ -96,7 +97,6 @@ function displaySearchData(p_startIndex) {
     for (let i = p_startIndex; i < MAXCARDSPERPAGE + p_startIndex; i++) {
         if (!searchData) { console.warn("Search data is null"); return; }
         if (!searchData.results[i]) { return; }
-        console.log(searchData.results[i]);
         let _card = generateCard();
         if (searchData.results[i].poster_path != null) {
             _card.posterImageEl.attr("src", "https://themoviedb.org/t/p/w1280/" + searchData.results[i].poster_path);
@@ -244,6 +244,3 @@ function OnCardClicked(event) {
         console.warn("idk events be hard");
     }
 }
-
-
-
