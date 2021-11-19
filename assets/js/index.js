@@ -31,7 +31,7 @@ $("#pageNumContainer").on("click", event => {
         let index = event.target.id.replace("num", "");
         console.log(index);
         MoveToPage(index);
-        UpdateNumIds(currentIndex);
+        UpdateNumIds(index);
     } else {
         console.log("Idk events be complex")
     }
@@ -39,7 +39,7 @@ $("#pageNumContainer").on("click", event => {
 
 function UpdateNumIds(currentIndex){
     let children = $("#pageNumContainer").children()
-    for (let i = 0; i < children.length; i++){
+    for (let i = 1; i <= children.length; i++){
         if (i == currentIndex){
             children.eq(i).attr("id", "current");
         } else {
@@ -117,6 +117,7 @@ function displaySearchData(p_startIndex) {
 
 // TODO:  Restrict max page numbers at once and "scroll" the numbers depending on position
 function DisplayPageNumbers() {
+    $("#pageNumContainer").children().remove();
     for (let i = 1; i <= numOfPages; i++) {
         //Create number element
         let numberEl = $("<a>");
