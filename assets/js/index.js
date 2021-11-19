@@ -13,9 +13,8 @@ $("#SearchForm").submit(OnSubmit)
 function OnSubmit(event) {
     event.preventDefault();
     let movieName = $("#search-bar").val();
-    let year = $("#year-field").val();
     movieName.replace(' ', '+');
-    FetchData(movieName, year);
+    FetchData(movieName);
 }
 $("#goBackToSearch").on("click", function () {
     currentPageLayout = "Search";
@@ -26,13 +25,14 @@ $("#backbtn").on("click", DisplayPreviousPage);
 
 $("#nextbtn").on("click", DisplayNextPage);
 
-$("pageNumContainer").on("click", function (event) {
+$("#pageNumContainer").on("click", event => {
     event.preventDefault();
     if (event.target.tagName === "A") {
         let index = event.target.id.replace("num", "");
+        console.log(index);
         MoveToPage(index);
-    }
-    else {
+        event.target.id = "current";
+    } else {
         console.log("Idk events be complex")
     }
 });
@@ -52,7 +52,7 @@ function SwitchPageLayout() {
     }
 }
 //TODO: filter results based on year
-function FetchData(p_name, p_year) {
+function FetchData(p_name) {
     let requestURL = "https://api.themoviedb.org/3/search/movie?api_key=cba89e07597df25af6057ff006d6ebc5&";
     requestURL += "query=" + p_name;
 
@@ -70,13 +70,6 @@ function FetchData(p_name, p_year) {
             DisplayPageNumbers();
             SwitchPageLayout();
         })
-
-            
-
-        
-
-
-
         .catch(function(error) {
 
             //Do Something in case of error
@@ -218,16 +211,14 @@ function MoveToPage(p_pageNum) {
         console.warn("Attempted to move to page out of range.")
         return;
     }
-    console.log("MoveToPage")
+    if(p_pageNum === "current") { return;}
+    console.log(p_pageNum);
     displaySearchData((p_pageNum * MAXCARDSPERPAGE) - MAXCARDSPERPAGE);
     currentPage = p_pageNum;
+    CheckPagesLeft();
 }
 
-
-
-
 function AddCardClickEvent(p_wrapperAnchor) {
-
     p_wrapperAnchor.on("click", OnCardClicked);
 }
 

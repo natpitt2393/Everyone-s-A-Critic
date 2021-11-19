@@ -86,6 +86,9 @@ body {
 
 
 
+#pageNumContainer a{
+    margin: 4px;
+}
 
 .movie-section {
     display: flex;
